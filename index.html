@@ -67,7 +67,9 @@
       <aside class="lead-card" id="contact-top">
         <h3>Connect With Trusted<br>Home Builders</h3>
         <p>Trusted partner for end-to-end<br>construction</p>
-        <form data-form-source="Hero - Get Started For Free">
+        <form name="hero-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="hero-enquiry">
+          <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
           <input type="text" name="name" placeholder="Full Name*" required>
           <div class="phone-row">
             <select name="country_code" aria-label="Country code">
@@ -412,7 +414,9 @@
       <div class="advisor-card">
         <h3>Connect with Trusted Home Builders</h3>
         <p>Trusted Builders for End-to-End Home Construction</p>
-        <form class="advisor-form" data-form-source="Contact - Talk to our Construction Advisor">
+        <form class="advisor-form" name="contact-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact-enquiry">
+          <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
           <input type="text" name="name" placeholder="Full Name*" required>
           <div class="phone-field"><span>🇮🇳 +91⌄</span><input type="tel" name="mobile" placeholder="Mobile Number*" pattern="[0-9]{10}" title="Enter a 10-digit mobile number" required></div>
           <input type="text" name="plot_location" placeholder="Location of your plot*" required>
@@ -480,30 +484,22 @@
     })();
   </script>
   <script>
-    // Enquiries are emailed via FormSubmit (https://formsubmit.co). Change this to send leads elsewhere.
-    const LEAD_EMAIL = "vmprobuild@gmail.com";
-
-    document.querySelectorAll("form").forEach(form => form.addEventListener("submit", async function(e) {
+    // Enquiries are captured by Netlify Forms (data-netlify on each form). Email alerts are set up in
+    // Netlify: Project configuration > Notifications > Emails and webhooks > Form submission notifications.
+    document.querySelectorAll("form[data-netlify]").forEach(form => form.addEventListener("submit", async function(e) {
       e.preventDefault();
       const button = form.querySelector('button[type="submit"]');
       const label = button.textContent;
       button.disabled = true;
       button.textContent = "Sending...";
 
-      const data = Object.fromEntries(new FormData(form));
-      data._subject = "New enquiry from " + (data.name || "website") + " - VM PROBUILD";
-      data._template = "table";
-      data.form = form.dataset.formSource || "Website form";
-      data.page = location.href;
-
       try {
-        const res = await fetch("https://formsubmit.co/ajax/" + LEAD_EMAIL, {
+        const res = await fetch("/", {
           method: "POST",
-          headers: {"Content-Type": "application/json", "Accept": "application/json"},
-          body: JSON.stringify(data)
+          headers: {"Content-Type": "application/x-www-form-urlencoded"},
+          body: new URLSearchParams(new FormData(form)).toString()
         });
-        const result = await res.json().catch(() => ({}));
-        if (!res.ok || String(result.success) === "false") throw new Error(result.message || "Request failed");
+        if (!res.ok) throw new Error("Request failed: " + res.status);
         alert("Thank you! VM PROBUILD will contact you shortly.");
         form.reset();
       } catch (err) {
