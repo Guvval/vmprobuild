@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9d6e3"/><stop offset="1" stop-color="#ffffff"/></linearGradient></defs>
+  <rect width="600" height="800" fill="url(#sky)"/>
+  <rect x="60" y="277" width="170" height="523" fill="#5b7a99" opacity=".55"/>
+  <rect x="200" y="179" width="210" height="621" fill="#5b7a99"/>
+  <rect x="390" y="333" width="160" height="467" fill="#5b7a99" opacity=".75"/>
+  <g fill="#ffffff" opacity=".55">
+    <rect x="225" y="209" width="40" height="28"/><rect x="285" y="209" width="40" height="28"/><rect x="345" y="209" width="40" height="28"/>
+    <rect x="225" y="269" width="40" height="28"/><rect x="285" y="269" width="40" height="28"/><rect x="345" y="269" width="40" height="28"/>
+    <rect x="225" y="329" width="40" height="28"/><rect x="285" y="329" width="40" height="28"/><rect x="345" y="329" width="40" height="28"/>
+    <rect x="225" y="389" width="40" height="28"/><rect x="285" y="389" width="40" height="28"/><rect x="345" y="389" width="40" height="28"/>
+  </g>
+  <rect y="760" width="600" height="40" fill="#3a3f47"/>
+  <text x="300" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#5b7a99">PROJECT 1</text>
+  <text x="300" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#5b7a99" opacity=".8">Placeholder image</text>
+</svg>
