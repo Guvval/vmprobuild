@@ -488,6 +488,10 @@
     // Netlify: Project configuration > Notifications > Emails and webhooks > Form submission notifications.
     document.querySelectorAll("form[data-netlify]").forEach(form => form.addEventListener("submit", async function(e) {
       e.preventDefault();
+      if (location.protocol === "file:" || ["localhost", "127.0.0.1"].includes(location.hostname)) {
+        alert("Forms only send on the live Netlify site, not when opened locally.");
+        return;
+      }
       const button = form.querySelector('button[type="submit"]');
       const label = button.textContent;
       button.disabled = true;
