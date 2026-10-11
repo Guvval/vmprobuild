@@ -67,9 +67,7 @@
       <aside class="lead-card" id="contact-top">
         <h3>Connect With Trusted<br>Home Builders</h3>
         <p>Trusted partner for end-to-end<br>construction</p>
-        <form name="hero-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="hero-enquiry">
-          <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
+        <form class="lead-form" data-form-source="Get Started For Free">
           <input type="text" name="name" placeholder="Full Name*" required>
           <div class="phone-row">
             <select name="country_code" aria-label="Country code">
@@ -414,9 +412,7 @@
       <div class="advisor-card">
         <h3>Connect with Trusted Home Builders</h3>
         <p>Trusted Builders for End-to-End Home Construction</p>
-        <form class="advisor-form" name="contact-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="contact-enquiry">
-          <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
+        <form class="advisor-form lead-form" data-form-source="Talk to our Construction Advisor">
           <input type="text" name="name" placeholder="Full Name*" required>
           <div class="phone-field"><span>🇮🇳 +91⌄</span><input type="tel" name="mobile" placeholder="Mobile Number*" pattern="[0-9]{10}" title="Enter a 10-digit mobile number" required></div>
           <input type="text" name="plot_location" placeholder="Location of your plot*" required>
@@ -484,34 +480,31 @@
     })();
   </script>
   <script>
-    // Enquiries are captured by Netlify Forms (data-netlify on each form). Email alerts are set up in
-    // Netlify: Project configuration > Notifications > Emails and webhooks > Form submission notifications.
-    document.querySelectorAll("form[data-netlify]").forEach(form => form.addEventListener("submit", async function(e) {
-      e.preventDefault();
-      if (location.protocol === "file:" || ["localhost", "127.0.0.1"].includes(location.hostname)) {
-        alert("Forms only send on the live Netlify site, not when opened locally.");
-        return;
-      }
-      const button = form.querySelector('button[type="submit"]');
-      const label = button.textContent;
-      button.disabled = true;
-      button.textContent = "Sending...";
+    // Enquiries open the visitor's mail app with a pre-filled email to this address.
+    const LEAD_EMAIL = "vmprobuild@gmail.com";
 
-      try {
-        const res = await fetch("/", {
-          method: "POST",
-          headers: {"Content-Type": "application/x-www-form-urlencoded"},
-          body: new URLSearchParams(new FormData(form)).toString()
-        });
-        if (!res.ok) throw new Error("Request failed: " + res.status);
-        alert("Thank you! VM PROBUILD will contact you shortly.");
-        form.reset();
-      } catch (err) {
-        alert("Sorry, we couldn't send your details. Please call or WhatsApp us on 7204018642.");
-      } finally {
-        button.disabled = false;
-        button.textContent = label;
-      }
+    document.querySelectorAll("form.lead-form").forEach(form => form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      const name = (data.get("name") || "").trim();
+      const code = (data.get("country_code") || "+91").replace(/[^+\d]/g, "");
+
+      const subject = "New enquiry from " + name + " - VM PROBUILD";
+      const body = [
+        "Hello VM PROBUILD,",
+        "",
+        "I would like to discuss my construction project.",
+        "",
+        "Name: " + name,
+        "Mobile: " + code + " " + (data.get("mobile") || "").trim(),
+        "Plot location: " + (data.get("plot_location") || "").trim(),
+        "",
+        "Submitted via: " + (form.dataset.formSource || "Website form")
+      ].join("\r\n");
+
+      window.location.href = "mailto:" + LEAD_EMAIL +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
     }));
   </script>
 
