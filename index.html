@@ -6,6 +6,7 @@
   <title>VM PROBUILD | Home & Commercial Construction</title>
   <meta name="description" content="VM PROBUILD — residential and commercial construction with transparent pricing and end-to-end project management.">
   <link rel="stylesheet" href="styles.css">
+  <script src="hero-config.js"></script>
 </head>
 <body>
   <header class="navbar">
@@ -29,10 +30,50 @@
 
   <main>
     <section class="hero">
-      <div class="hero-image">
+      <div class="hero-image" id="heroImage">
         <img src="assets/hero-building.svg" alt="Construction project">
         <div class="image-fade"></div>
       </div>
+      <script>
+        // Swap the hero banner for the active promotion in hero-config.js (or its default).
+        (() => {
+          const config = window.HERO_CONFIG;
+          const holder = document.getElementById("heroImage");
+          if (!config || !holder) return;
+
+          const today = new Date();
+          const day = s => new Date(s + "T00:00:00");
+          const active = (config.promotions || []).find(p =>
+            p && p.image &&
+            (!p.start || day(p.start) <= today) &&
+            (!p.end || today < new Date(day(p.end).getTime() + 86400000))
+          );
+          const hero = active || config.default;
+          if (!hero || !hero.image) return;
+
+          let media;
+          if (/\.(mp4|webm)$/i.test(hero.image)) {
+            media = document.createElement("video");
+            Object.assign(media, {src: hero.image, autoplay: true, muted: true, loop: true, playsInline: true});
+            media.setAttribute("muted", "");
+            media.setAttribute("aria-label", hero.alt || "");
+          } else {
+            media = document.createElement("img");
+            media.src = hero.image;
+            media.alt = hero.alt || "";
+          }
+
+          let node = media;
+          if (hero.link) {
+            node = document.createElement("a");
+            node.href = hero.link;
+            node.className = "hero-link";
+            node.setAttribute("aria-label", hero.alt || "View offer");
+            node.appendChild(media);
+          }
+          holder.querySelector("img").replaceWith(node);
+        })();
+      </script>
 
       <div class="hero-copy">
         <h1>Construct Your Property With Us</h1>
