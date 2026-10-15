@@ -480,31 +480,48 @@
     })();
   </script>
   <script>
-    // Enquiries open the visitor's mail app with a pre-filled email to this address.
-    const LEAD_EMAIL = "vmprobuild@gmail.com";
+    // Enquiries are emailed to vmprobuild@gmail.com via Web3Forms (https://web3forms.com).
+    // The access key is tied to that inbox; create a new key there to send leads elsewhere.
+    const WEB3FORMS_ACCESS_KEY = "14af24b6-d30e-4058-b8f7-e73465ef122b";
 
-    document.querySelectorAll("form.lead-form").forEach(form => form.addEventListener("submit", function(e) {
+    document.querySelectorAll("form.lead-form").forEach(form => form.addEventListener("submit", async function(e) {
       e.preventDefault();
+      const button = form.querySelector('button[type="submit"]');
+      const label = button.textContent;
+      button.disabled = true;
+      button.textContent = "Sending...";
+
       const data = new FormData(form);
       const name = (data.get("name") || "").trim();
       const code = (data.get("country_code") || "+91").replace(/[^+\d]/g, "");
 
-      const subject = "New enquiry from " + name + " - VM PROBUILD";
-      const body = [
-        "Hello VM PROBUILD,",
-        "",
-        "I would like to discuss my construction project.",
-        "",
-        "Name: " + name,
-        "Mobile: " + code + " " + (data.get("mobile") || "").trim(),
-        "Plot location: " + (data.get("plot_location") || "").trim(),
-        "",
-        "Submitted via: " + (form.dataset.formSource || "Website form")
-      ].join("\r\n");
+      const payload = {
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: "New enquiry from " + name + " - VM PROBUILD",
+        from_name: "VM PROBUILD Website",
+        "Name": name,
+        "Mobile": code + " " + (data.get("mobile") || "").trim(),
+        "Plot location": (data.get("plot_location") || "").trim(),
+        "Submitted via": form.dataset.formSource || "Website form"
+      };
 
-      window.location.href = "mailto:" + LEAD_EMAIL +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {"Content-Type": "application/json", "Accept": "application/json"},
+          body: JSON.stringify(payload)
+        });
+        const result = await res.json().catch(() => ({}));
+        if (!res.ok || !result.success) throw new Error(result.message || "Request failed: " + res.status);
+        alert("Thank you! VM PROBUILD will contact you shortly.");
+        form.reset();
+      } catch (err) {
+        console.error("Enquiry form error:", err);
+        alert("Sorry, we couldn't send your details. Please call or WhatsApp us on 7204018642.");
+      } finally {
+        button.disabled = false;
+        button.textContent = label;
+      }
     }));
   </script>
 
