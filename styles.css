@@ -1592,5 +1592,6 @@ button,input,select{font:inherit}
 @media(max-width:650px){.brand-logo{height:40px}}
 
 /* Advisor card: full VM PROBUILD logo image (assets/vm-logo-full.png), shown whole */
-img.expert-visual{display:block;width:100%;height:100%;min-height:265px;box-sizing:border-box;padding:24px;object-fit:contain;background:#fff}
+img.expert-visual{display:block;width:100%;height:100%;min-height:265px;box-sizing:border-box;padding:24px;object-fit:contain;background:linear-gradient(145deg,#fbf6f1 0%,#f3ebe4 100%);box-shadow:inset -1px 0 0 #eadfd6}
 @media(max-width:650px){img.expert-visual{height:200px;min-height:0;padding:16px}}
+.expert-card{border:1px solid #e6dcd4;box-shadow:0 10px 30px rgba(23,33,58,.10)}
