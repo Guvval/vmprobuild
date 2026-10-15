@@ -292,26 +292,6 @@ body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#202027;background:#f
   background:#f8eeeb;
   border:1px solid #ead6d1;
 }
-.building-shape{
-  font-size:42px;
-  line-height:1;
-  font-weight:700;
-}
-.mini-bed{
-  position:absolute;
-  right:9px;
-  bottom:13px;
-  font-size:12px;
-}
-.building-stack{
-  font-size:20px;
-  line-height:.72;
-  letter-spacing:3px;
-}
-.joint-mark{
-  font-size:42px;
-  font-weight:700;
-}
 .service-card h3{
   margin:0 0 14px;
   font-size:23px;
@@ -1575,3 +1555,33 @@ button,input,select{font:inherit}
 .packages-section a:focus-visible,.packages-section button:focus-visible,
 .packages-section summary:focus-visible,.packages-section select:focus-visible{outline:3px solid #1d4ed8;outline-offset:2px}
 .packages-section .custom-package>a:focus-visible{outline-color:#fff}
+
+/* Icons: inline SVG line icons (Lucide style), sized per section */
+.icon{display:block;width:24px;height:24px;flex:none}
+.trust-icon{width:38px;height:38px;flex:0 0 38px;border:0;border-radius:10px;background:#fff1ed;color:#b0402f}
+.trust-icon .icon{width:21px;height:21px}
+.stat-icon{width:56px;height:56px;margin:0 auto 14px;border-radius:50%;background:#fff1ed;color:#b0402f}
+.stat-icon .icon{width:28px;height:28px}
+.process-icon{width:56px;height:56px;margin-bottom:18px;display:grid;place-items:center;border-radius:14px;background:#fff1ed;border:1px solid #f0d7d1;color:#b0402f}
+.process-icon .icon{width:28px;height:28px}
+.service-logo{color:#b0402f}
+.service-logo .icon{width:38px;height:38px;stroke-width:1.75}
+.mobile-call .icon{width:18px;height:18px;margin-right:6px}
+@media(max-width:650px){
+  .trust-icon{width:30px;height:30px;flex:0 0 30px;border-radius:8px}
+  .trust-icon .icon{width:17px;height:17px}
+  .stat-icon{width:48px;height:48px}
+  .stat-icon .icon{width:24px;height:24px}
+  .process-icon{width:48px;height:48px;margin-bottom:12px}
+  .process-icon .icon{width:24px;height:24px}
+  .service-logo .icon{width:32px;height:32px}
+}
+@media(max-width:390px){
+  .trust-icon{width:26px;height:26px;flex:0 0 26px}
+  .trust-icon .icon{width:15px;height:15px}
+}
+
+/* Advisor card button: was red text on red (generic .expert-card a colour rule) */
+.expert-card .expert-content a{background:#b14838;color:#fff}             /* 5.5:1 */
+.expert-card .expert-content a:hover{background:#963b31;color:#fff}
+.expert-card .expert-content a:focus-visible{outline:3px solid #fff;outline-offset:2px}
