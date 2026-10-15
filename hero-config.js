@@ -28,7 +28,7 @@ window.HERO_CONFIG = {
   promotions: [
     // SAMPLE for testing - delete this entry (or change the dates) when done.
     {
-      image: "assets/hero/sample-promo.gif",
+      image: "assets/hero/side-building.jpeg",
       alt: "Sample promotion - 5% off and free site visit",
       link: "#contact",
       start: "2026-10-15",
