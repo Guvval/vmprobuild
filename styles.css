@@ -1595,3 +1595,9 @@ button,input,select{font:inherit}
 img.expert-visual{display:block;width:100%;height:100%;min-height:265px;box-sizing:border-box;padding:24px;object-fit:contain;background:linear-gradient(145deg,#fbf6f1 0%,#f3ebe4 100%);box-shadow:inset -1px 0 0 #eadfd6}
 @media(max-width:650px){img.expert-visual{height:200px;min-height:0;padding:16px}}
 .expert-card{border:1px solid #e6dcd4;box-shadow:0 10px 30px rgba(23,33,58,.10)}
+
+/* Why Us "More / Less" toggle: label and chevron centred on one line; chevron flips when open */
+.comparison-more button{display:inline-flex;align-items:center;justify-content:center;gap:6px;line-height:1;min-width:112px}
+.comparison-more .more-chevron{display:block;width:16px;height:16px;margin:0;transition:transform .2s ease}
+.comparison-more button[aria-expanded="true"] .more-chevron{transform:rotate(180deg)}
+.comparison-more button:focus-visible{outline:3px solid #1d4ed8;outline-offset:2px}

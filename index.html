@@ -295,7 +295,7 @@
 
         <div class="comparison-more">
           <button type="button" id="moreParameters" aria-expanded="false">
-            More <span class="more-chevron">⌄</span>
+            <span class="more-label">More</span><svg class="more-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
           </button>
         </div>
 
@@ -578,7 +578,7 @@
         const expanded = moreParameters.getAttribute("aria-expanded") === "true";
         extraParameters.forEach(row => row.classList.toggle("show-extra", !expanded));
         moreParameters.setAttribute("aria-expanded", String(!expanded));
-        moreParameters.querySelector(".more-chevron").textContent = expanded ? "⌄" : "⌃";
+        moreParameters.querySelector(".more-label").textContent = expanded ? "More" : "Less";
       });
     }
   </script>
