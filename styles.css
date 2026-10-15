@@ -1585,3 +1585,8 @@ button,input,select{font:inherit}
 .expert-card .expert-content a{background:#b14838;color:#fff}             /* 5.5:1 */
 .expert-card .expert-content a:hover{background:#963b31;color:#fff}
 .expert-card .expert-content a:focus-visible{outline:3px solid #fff;outline-offset:2px}
+
+/* Brand logo image (assets/vm-logo-mark.png) replaces the old "VM" badge */
+.brand:before{content:none;display:none}
+.brand-logo{display:block;height:52px;width:auto;flex:none}
+@media(max-width:650px){.brand-logo{height:40px}}
