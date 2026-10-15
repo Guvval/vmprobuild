@@ -5,8 +5,8 @@
   <rect width="1600" height="1000" fill="url(#sky)"/>
   <rect x="80" y="420" width="260" height="520" fill="#8a96a3" opacity=".5"/>
   <rect x="1180" y="380" width="300" height="560" fill="#8a96a3" opacity=".5"/>
-  <rect x="380" y="220" width="520" height="720" fill="#a93f35"/>
-  <rect x="900" y="320" width="260" height="620" fill="#7d2f28"/>
+  <rect x="380" y="220" width="520" height="720" fill="#890641"/>
+  <rect x="900" y="320" width="260" height="620" fill="#660530"/>
   <g fill="#ffffff" opacity=".6">
     <rect x="420" y="270" width="80" height="55"/><rect x="540" y="270" width="80" height="55"/><rect x="660" y="270" width="80" height="55"/><rect x="780" y="270" width="80" height="55"/>
     <rect x="420" y="380" width="80" height="55"/><rect x="540" y="380" width="80" height="55"/><rect x="660" y="380" width="80" height="55"/><rect x="780" y="380" width="80" height="55"/>
@@ -21,6 +21,6 @@
     <line x1="1220" y1="70" x2="1220" y2="200" stroke-width="4"/>
   </g>
   <rect y="940" width="1600" height="60" fill="#3a3f47"/>
-  <text x="640" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#7d2f28">VM PROBUILD</text>
-  <text x="640" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#7d2f28" opacity=".8">Placeholder hero image</text>
+  <text x="640" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#660530">VM PROBUILD</text>
+  <text x="640" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#660530" opacity=".8">Placeholder hero image</text>
 </svg>
