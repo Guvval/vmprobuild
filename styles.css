@@ -1601,3 +1601,30 @@ img.expert-visual{display:block;width:100%;height:100%;min-height:265px;box-sizi
 .comparison-more .more-chevron{display:block;width:16px;height:16px;margin:0;transition:transform .2s ease}
 .comparison-more button[aria-expanded="true"] .more-chevron{transform:rotate(180deg)}
 .comparison-more button:focus-visible{outline:3px solid #1d4ed8;outline-offset:2px}
+
+/* Terms & Privacy pages (terms.html, privacy.html) */
+.legal-page{background:#faf8f6;color:#202027;font-family:Arial,Helvetica,sans-serif}
+.legal-header{height:72px;display:flex;align-items:center;padding:0 24px;background:#fff;border-bottom:1px solid #e8e2dd}
+.legal-brand{display:flex;align-items:center;gap:10px;color:#17171d;text-decoration:none;font-size:20px;font-weight:900;letter-spacing:-.5px;max-width:860px;width:100%;margin:0 auto}
+.legal-brand img{height:44px;width:auto}
+.legal-main{max-width:860px;margin:32px auto 48px;padding:40px 48px;background:#fff;border:1px solid #ebe5e0;border-radius:14px;box-shadow:0 10px 30px rgba(23,33,58,.06);line-height:1.65;font-size:16px}
+.legal-main h1{margin:0;font-size:34px;line-height:1.2;color:#17213a;letter-spacing:-.5px}
+.legal-updated{margin:6px 0 24px;color:#5d6470;font-size:14px}
+.legal-main h2{margin:30px 0 8px;font-size:20px;color:#17213a}
+.legal-main p,.legal-main li{color:#33333d}
+.legal-main ul{padding-left:22px;margin:8px 0 12px}
+.legal-main li{margin:5px 0}
+.legal-main a{color:#a8392b}
+.legal-contact{padding:16px 18px;background:#fbf6f1;border:1px solid #eadfd6;border-radius:10px}
+.legal-close{margin-top:36px;padding-top:24px;border-top:1px solid #eee7e1;text-align:center}
+.legal-close button{min-width:160px;min-height:48px;padding:0 28px;border:0;border-radius:8px;background:#b14838;color:#fff;font-size:16px;font-weight:700;cursor:pointer}
+.legal-close button:hover{background:#963b31}
+.legal-close button:focus-visible,.legal-main a:focus-visible,.legal-brand:focus-visible{outline:3px solid #1d4ed8;outline-offset:2px}
+@media(max-width:650px){
+  .legal-header{height:60px;padding:0 16px}
+  .legal-brand{font-size:18px}.legal-brand img{height:36px}
+  .legal-main{margin:16px;padding:24px 18px;font-size:15px}
+  .legal-main h1{font-size:26px}
+  .legal-main h2{font-size:18px}
+  .legal-close button{width:100%}
+}
